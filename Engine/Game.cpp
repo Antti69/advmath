@@ -56,6 +56,7 @@ void Game::ComposeFrame()
 {
 	for( const auto& entity : entities )
 	{
-		cam.Draw( entity.GetDrawable() );
+		Drawable d = entity.GetDrawable();
+		cam.Draw(entity.GetDrawable());
 	}
 }
