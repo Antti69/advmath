@@ -28,6 +28,7 @@
 #include "Star.h"
 #include "Camera.h"
 #include "MouseCameraController.h"
+#include "Rng.h"
 
 class Game
 {
@@ -51,5 +52,7 @@ private:
 	Camera cam;
 	MouseCameraController camCtrl;
 	std::vector<Entity> entities;
+	RngMt<float> rngF;
+	RngMt<int> rngI;
 	/********************************/
 };

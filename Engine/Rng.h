@@ -90,3 +90,22 @@ private:
 	ClockRng clock;
 	std::mt19937 rg{ (unsigned int)std::chrono::high_resolution_clock::now().time_since_epoch().count() };
 };
+
+template<typename T>
+class RngMt
+{
+public:
+	T CreateNumber(T min, T max)
+	{
+		T out = rg();
+		out %= max;
+		if (out < min || out > max + 1)
+		{
+			CreateNumber(min, max);
+		}
+		return out;
+	}
+private:
+	std::mt19937 rg{ (T)std::chrono::high_resolution_clock::now().time_since_epoch().count() };
+};
+

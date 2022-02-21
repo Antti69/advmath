@@ -51,6 +51,8 @@ void Game::Go()
 void Game::UpdateModel()
 {
 	camCtrl.Update();
+	float test = rngF.CreateNumber(0, 0.7f);
+	int x = rngI.CreateNumber(0, 50);
 }
 
 void Game::ComposeFrame()
