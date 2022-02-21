@@ -30,17 +30,18 @@ Game::Game( MainWindow& wnd )
 	cam( ct ),
 	camCtrl( wnd.mouse,cam )
 {
-	entities.emplace_back( Star::Make( 100.0f,50.0f ),Vec2{ 460.0f,0.0f } );
-	entities.emplace_back( Star::Make( 150.0f,50.0f ),Vec2{ 150.0f,300.0f } );
-	entities.emplace_back( Star::Make( 100.0f,50.0f ),Vec2{ 250.0f,-200.0f } );
-	entities.emplace_back( Star::Make( 150.0f,50.0f ),Vec2{ -250.0f,200.0f } );
-	entities.emplace_back( Star::Make( 100.0f,50.0f ),Vec2{ 0.0f,0.0f } );
-	entities.emplace_back( Star::Make( 200.0f,50.0f ),Vec2{ -150.0f,-300.0f } );
-	entities.emplace_back( Star::Make( 100.0f,50.0f ),Vec2{ 400.0f,300.0f } );
+	//entities.emplace_back( Star::Make( 100.0f,50.0f ),Vec2{ 460.0f,0.0f } );
+	//entities.emplace_back( Star::Make( 150.0f,50.0f ),Vec2{ 150.0f,300.0f } );
+	//entities.emplace_back( Star::Make( 100.0f,50.0f ),Vec2{ 250.0f,-200.0f } );
+	//entities.emplace_back( Star::Make( 150.0f,50.0f ),Vec2{ -250.0f,200.0f } );
+	entities.emplace_back( Star::Make( 150.0f,50.0f ),Vec2{ 0.0f,0.0f } );
+	//entities.emplace_back( Star::Make( 200.0f,50.0f ),Vec2{ -150.0f,-300.0f } );
+	//entities.emplace_back( Star::Make( 100.0f,50.0f ),Vec2{ 400.0f,300.0f } );
 }
 
 void Game::Go()
 {
+
 	gfx.BeginFrame();	
 	UpdateModel();
 	ComposeFrame();
@@ -56,7 +57,7 @@ void Game::ComposeFrame()
 {
 	for( const auto& entity : entities )
 	{
-		Drawable d = entity.GetDrawable();
+		
 		cam.Draw(entity.GetDrawable());
 	}
 }

@@ -33,7 +33,7 @@ public:
 	{
 		return scale;
 	}
-	Drawable& GetDrawable() const
+	Drawable GetDrawable() const
 	{
 		Drawable d( model,c );
 		d.Scale( scale );
