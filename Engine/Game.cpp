@@ -34,9 +34,16 @@ Game::Game( MainWindow& wnd )
 	//entities.emplace_back( Star::Make( 150.0f,50.0f ),Vec2{ 150.0f,300.0f } );
 	//entities.emplace_back( Star::Make( 100.0f,50.0f ),Vec2{ 250.0f,-200.0f } );
 	//entities.emplace_back( Star::Make( 150.0f,50.0f ),Vec2{ -250.0f,200.0f } );
-	entities.emplace_back( Star::Make( 150.0f,50.0f ),Vec2{ 0.0f,0.0f } );
+	//entities.emplace_back( Star::Make( 150.0f,50.0f ),Vec2{ 0.0f,0.0f } );
 	//entities.emplace_back( Star::Make( 200.0f,50.0f ),Vec2{ -150.0f,-300.0f } );
 	//entities.emplace_back( Star::Make( 100.0f,50.0f ),Vec2{ 400.0f,300.0f } );
+
+	for (int i = 0; i < 100; i++)
+	{
+		int posX = r.CreateInt(-2500, 5000);
+		int posY = r.CreateInt(-2500, 5000);
+		entities.emplace_back(Star::Make(100.0f, 50.0f), Vec2{ (float)posX, (float)posY });
+	}
 }
 
 void Game::Go()
@@ -51,8 +58,7 @@ void Game::Go()
 void Game::UpdateModel()
 {
 	camCtrl.Update();
-	float test = rngF.CreateNumber(0, 0.7f);
-	int x = rngI.CreateNumber(0, 50);
+	
 }
 
 void Game::ComposeFrame()

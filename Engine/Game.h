@@ -52,7 +52,6 @@ private:
 	Camera cam;
 	MouseCameraController camCtrl;
 	std::vector<Entity> entities;
-	RngMt<float> rngF;
-	RngMt<int> rngI;
+	Rng r;
 	/********************************/
 };
