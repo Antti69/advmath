@@ -29,6 +29,9 @@
 #include "Camera.h"
 #include "MouseCameraController.h"
 #include "Rng.h"
+#include <ranges>
+
+
 
 class Game
 {
@@ -53,5 +56,6 @@ private:
 	MouseCameraController camCtrl;
 	std::vector<Entity> entities;
 	Rng r;
+	
 	/********************************/
 };

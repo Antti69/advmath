@@ -19,7 +19,7 @@
 *	along with The Chili DirectX Framework.  If not, see <http://www.gnu.org/licenses/>.  *
 ******************************************************************************************/
 #pragma once
-
+#include <cmath>
 template <typename T>
 class _Vec2
 {
@@ -42,11 +42,11 @@ public:
 	}
 	T		LenSq() const
 	{
-		return sq( *this );
+		return x * x + y * y;
 	}
 	T		Len() const
 	{
-		return sqrt( LenSq() );
+		return std::sqrt( LenSq() );
 	}
 	_Vec2&	Normalize()
 	{

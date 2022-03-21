@@ -3,6 +3,7 @@
 int Rng::CreateInt(int min, int max, bool NormalDistr)
 {
 	int range = max - min + 1;
+	int maxrange = range;
 	uint64_t out = rg();
 	if (range == 0)
 	{
@@ -15,7 +16,8 @@ int Rng::CreateInt(int min, int max, bool NormalDistr)
 			range *= 2;
 		}
 		out %= range;
-		if (out > max)
+		
+		if (NormalDistr && out > static_cast<unsigned long long>(maxrange) + 1)
 		{
 			out /= 3;
 		}
