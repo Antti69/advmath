@@ -3,6 +3,7 @@
 #include "Graphics.h"
 #include <vector>
 #include "Vec2.h"
+#include <algorithm>
 
 class Drawable
 {
@@ -29,15 +30,36 @@ public:
 		translation.x *= scale_in_x;
 		translation.y *= scale_in_y;
 	}
-	void Render( Graphics& gfx )
+	void ReadyToRender()
 	{
-		for( auto& v : model )
+		for (auto& v : model)
 		{
 			v.x *= scale_x;
 			v.y *= scale_y;
 			v += translation;
 		}
-		gfx.DrawClosedPolyline( model,c );
+	}
+	void Render( Graphics& gfx )
+	{
+		gfx.DrawClosedPolyline(model, c);
+		//const float halfwidth = (float)gfx.ScreenWidth / 2;
+		//const float halfheight = (float)gfx.ScreenHeight / 2;
+
+		//if (std::any_of(model.begin(), model.end(), [&](const Vec2& p)
+		//{ return p.x >= translation.x - halfwidth + 100 && p.x <= translation.x + halfwidth &&
+		//	p.y >= translation.y - halfheight && p.y <= translation.y + halfheight; }))
+		//{
+		//	
+		//}
+		
+	}
+	const std::vector<Vec2>& GetModel() const
+	{
+		return model;
+	}
+	const Vec2& GetTranslation() const
+	{
+		return translation;
 	}
 private:
 	Color c;

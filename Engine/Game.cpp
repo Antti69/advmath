@@ -31,15 +31,6 @@ Game::Game( MainWindow& wnd )
 	cam( ct ),
 	camCtrl( wnd.mouse,cam )
 {
-	//entities.emplace_back( Star::Make( 100.0f,50.0f ),Vec2{ 460.0f,0.0f } );
-	//entities.emplace_back( Star::Make( 150.0f,50.0f ),Vec2{ 150.0f,300.0f } );
-	//entities.emplace_back( Star::Make( 100.0f,50.0f ),Vec2{ 250.0f,-200.0f } );
-	//entities.emplace_back( Star::Make( 150.0f,50.0f ),Vec2{ -250.0f,200.0f } );
-	//entities.emplace_back( Star::Make( 150.0f,50.0f ),Vec2{ 0.0f,0.0f } );
-	//entities.emplace_back( Star::Make( 200.0f,50.0f ),Vec2{ -150.0f,-300.0f } );
-	//entities.emplace_back( Star::Make( 100.0f,50.0f ),Vec2{ 400.0f,300.0f } );
-
-	
 
 	for (int i = 0; i < 300; i++)
 	{
@@ -50,12 +41,13 @@ Game::Game( MainWindow& wnd )
 		int flares = r.CreateInt(4, 7);
 		Vec2 pos = { (float)posX, (float)posY };
 		Color c = { (unsigned char)r.CreateInt(0, 255),(unsigned char)r.CreateInt(0, 255),(unsigned char)r.CreateInt(0, 255) };
+		float puls = r.CreateFloat(0.6f, 2.5f);
 
 		while (std::any_of(entities.begin(), entities.end(), [&](Entity& e)
 		{
 			Vec2 temp = { pos - e.GetPos() };
 			float dist = temp.Len();
-			return dist <= 500.0f;
+			return dist <= 550.0f;
 		}))
 		{
 			posX = r.CreateInt(-7500, 7500);
@@ -63,7 +55,7 @@ Game::Game( MainWindow& wnd )
 			pos = { (float)posX, (float)posY };
 		}
 
-		entities.emplace_back(Star::Make((float)outer, (float)inner, flares), pos, c );
+		entities.emplace_back(Star::Make((float)outer, (float)inner, flares), puls, pos, c );
 	}
 }
 
@@ -79,7 +71,10 @@ void Game::Go()
 void Game::UpdateModel()
 {
 	camCtrl.Update();
-	
+	for (auto& e : entities)
+	{
+		e.Pulsar(0.6f, 1.3f);
+	}
 }
 
 void Game::ComposeFrame()
