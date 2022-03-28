@@ -50,12 +50,15 @@ void Game::UpdateModel()
 	for( auto& ball : balls )
 	{
 		const auto plankPts = plank.GetPoints();
-		if( DistancePointLine( plankPts.first,plankPts.second,ball.GetPos() ) < ball.GetRadius() )
+		if( DistancePointLine( plankPts.first,plankPts.second,ball.GetPos() ) <= ball.GetRadius() )
 		{
 			const Vec2 w = plank.GetPlankSurfaceVector().GetNormalized();
 			const Vec2 v = ball.GetVel();
-			ball.SetVel( w * (v * w) * 2.0f - v );
+			const Vec2 res = (w * (v * w) * 2.0f - v);
+			ball.SetPos(ball.GetPos() + res.GetNormalized() * 3);
+			ball.SetVel( res );
 			collideSound.Play();
+			
 		}
 
 		ball.Update( dt );

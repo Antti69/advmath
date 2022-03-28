@@ -27,6 +27,11 @@ public:
 	{
 		TranslateBy( vel * dt );
 	}
+	void SetCol()
+	{
+		collided = true;
+	}
+	bool collided = false;
 private:
 	float radius;
 	Vec2 vel;
