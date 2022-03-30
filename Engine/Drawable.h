@@ -34,6 +34,10 @@ public:
 		angle += angle_in;
 		translation.Rotate( angle_in );
 	}
+	float GetAngle() const
+	{
+		return angle;
+	}
 	void Render( Graphics& gfx ) const
 	{
 		gfx.DrawClosedPolyline( *model,translation,scale_x,scale_y,angle,c );

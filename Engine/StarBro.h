@@ -34,15 +34,15 @@ public:
 	void Update( float dt )
 	{
 		time += dt;
-		UpdateColor();
-		UpdateScale();
+		//UpdateColor();
+		//UpdateScale();
 		UpdateRotation();
 	}
 private:
 	void UpdateColor()
 	{
 		Color c;
-		const int offset = int( 127.0f * sin( colorFreqFactor * time + colorPhase ) ) + 128;
+		const int offset = int( 127.0f * (int)sin( colorFreqFactor * time + colorPhase ) ) + 128;
 		c.SetR( std::min( baseColor.GetR() + offset,255 ) );
 		c.SetG( std::min( baseColor.GetG() + offset,255 ) );
 		c.SetB( std::min( baseColor.GetB() + offset,255 ) );
@@ -50,7 +50,7 @@ private:
 	}
 	void UpdateScale()
 	{
-		const float factor = radiusFactorAmplitude * sin( radiusFactorFreqFactor * time + radiusFactorPhase );
+		const float factor = radiusFactorAmplitude * (float)sin( radiusFactorFreqFactor * time + radiusFactorPhase );
 		SetScale( 1.0f + factor );
 	}
 	void UpdateRotation()

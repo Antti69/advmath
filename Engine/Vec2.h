@@ -63,8 +63,8 @@ public:
 	}
 	_Vec2&	Rotate( T angle )
 	{
-		const T cosTheta = cos( angle );
-		const T sinTheta = sin( angle );
+		const T cosTheta = (T)cos( angle );
+		const T sinTheta = (T)sin( angle );
 
 		const T new_x = x * cosTheta - y * sinTheta;
 		y = x * sinTheta + y * cosTheta;

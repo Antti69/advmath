@@ -378,8 +378,9 @@ void Graphics::DrawClosedPolyline( const std::vector<Vec2>& verts,Color c )
 
 void Graphics::DrawClosedPolyline( const std::vector<Vec2>& verts,const Vec2 & translation,float scale_x,float scale_y,float angle,Color c )
 {
-	const float sinTheta = sin( angle );
-	const float cosTheta = cos( angle );
+	const float sinTheta = (float)sin( angle );
+	const float cosTheta = (float)cos( angle );
+	
 
 	const auto xform = [&]( Vec2 v )
 	{

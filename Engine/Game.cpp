@@ -80,20 +80,39 @@ void Game::UpdateModel()
 {
 	const float dt = ft.Mark();
 	camCtrl.Update();
+	const Keyboard::Event e = wnd.kbd.ReadKey();
+	float rotate = cam.GetRot();
 	for( auto& star : stars )
 	{
 		star.Update( dt );
+		if (e.IsPress() && e.GetCode() == VK_SPACE)
+		{
+			Vec2 postest = star.GetPos();
+			postest.Rotate(-0.1f * PI);
+			star.SetPos(postest);
+			
+		}
 	}
+	//if (e.IsPress() && e.GetCode() == VK_SPACE)
+	//{
+
+	//	cam.Rotate(rotate + (-0.5 * PI));
+	//}
+
 }
 
 void Game::ComposeFrame()
 {
 	const auto vp = cam.GetViewportRect();
-	for( const auto& star : stars )
+	
+	for( auto& star : stars )
 	{
 		if( star.GetBoudingRect().IsOverlappingWith( vp ) )
 		{
-			cam.Draw( star.GetDrawable() );
+			
+			Drawable d = star.GetDrawable();
+			
+			cam.Draw( d );
 		}
 	}
 }
